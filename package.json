@@ -1,0 +1,45 @@
+{
+  "name": "nextjs14_lofi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "firebase": "^10.12.4",
+    "ioredis": "^5.4.1",
+    "lucide-react": "^0.408.0",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-draggable": "^4.4.6",
+    "react-ga4": "^2.1.0",
+    "react-h5-audio-player": "^3.9.3",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.2.1",
+    "react-lite-youtube-embed": "^2.4.0",
+    "react-resizable": "^3.0.5",
+    "react-tooltip": "^5.27.1",
+    "redis": "^4.6.15",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "ws": "^8.18.0",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/ws": "^8.5.11",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
