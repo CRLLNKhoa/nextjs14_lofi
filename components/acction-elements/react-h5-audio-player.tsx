@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import dataSong from "../../data-songs";
+import { useUIStore } from "@/stores/ui-store";
+import { cn } from "@/lib/utils";
 
 function ReactH5AudioPlayer() {
     const [listSong,setListSong] = useState(dataSong)
     const [id, setId] = useState(0);
+    const {isHidden}:any = useUIStore();
 
     const nextSong = () => {
       if (id < listSong.length) {
@@ -24,7 +27,7 @@ function ReactH5AudioPlayer() {
       if (id < 0) setId(listSong.length);
     };
   return (
-    <div className="absolute right-1/2 translate-x-1/2 bottom-2 z-40 w-[820px]">
+    <div className={cn("absolute duration-500 right-1/2 translate-x-1/2 bottom-2 z-40 w-[820px]",isHidden ? "opacity-0" : "")}>
       <AudioPlayer
         autoPlay
         src={listSong[id].src}
@@ -37,6 +40,7 @@ function ReactH5AudioPlayer() {
         onEnded={nextSong}
         autoPlayAfterSrcChange={true}
         layout="horizontal"
+        volume={0.2}
       />
     </div>
   );

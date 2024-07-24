@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import Tools from "./tools";
 import Playlist from "./playlist";
 import Scense from "./scense";
+import { useUIStore } from "@/stores/ui-store";
 
 function MenuGroup() {
   const [currentMenu, setCurrentMenu] = useState<
@@ -18,13 +19,13 @@ function MenuGroup() {
   const [isOpenPlaylist, setIsOpenPlaylist] = useState(false);
   const [isOpenSetting, setIsOpenSetting] = useState(false);
   const [isOpenScense, setIsOpebnScense] = useState(false);
-
+  const {isHidden}:any = useUIStore();
   return (
     <>
       <div
-        className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center
-        flex-col py-4 rounded-lg text-white text-sm w-[36px] gap-4 bg-bgelement 
-        transistion-all duration-500 z-20"
+        className={
+          cn("absolute top-1/2 -translate-y-1/2 right-4 flex items-center flex-col py-4 rounded-lg text-white text-sm w-[36px] gap-4 bg-bgelement transistion-all duration-500 z-20", 
+            isHidden ? "opacity-0" : "")}
       >
         <RiSoundModuleFill
           data-tooltip-delay-show={500}

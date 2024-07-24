@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { IoClose } from "react-icons/io5";
 import { cn } from "@/lib/utils";
+import { useUIStore } from "@/stores/ui-store";
 
 interface AudioPlayerProps {
   index: number;
@@ -27,11 +28,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const audioPlayerProps: AudioPlayerProps = {
-    index: 0,
-    src: "",
-    name: ""
-  }
+  const {isHidden}:any = useUIStore();
 
   useEffect(() => {
     audioRefs.current[index] = audioRef.current;
@@ -46,8 +43,10 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
   return (
     <div
       data-tooltip-id={`tooltip-audio-${name}`}
-      className="border-4 border-white rounded-full size-11 cursor-pointer 
-      p-[2px] group bg-transparent "
+      className={cn(
+        "border-4 border-white duration-500 rounded-full size-11 cursor-pointer p-[2px] group bg-transparent "
+      , isHidden ? "opacity-0" : ""
+      )}
     >
       <audio ref={audioRef} src={src} className="hidden" />
       {!isOpen && (
@@ -56,7 +55,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
             setIsOpen(true);
             playAudio(index);
           }}
-          className={cn("bg-sky-500 size-full rounded-full cursor-pointer")}
+          className={cn("hover:bg-sky-500/80 bg-transparent duration-500 size-full rounded-full cursor-pointer")}
         ></button>
       )}
       {isOpen && (
@@ -68,7 +67,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
           onMouseEnter={() => {
             setHovered(true);
           }}
-          className="bg-sky-500 size-full rounded-full cursor-pointer"
+          className="bg-sky-500/80 size-full rounded-full cursor-pointer"
         ></button>
       )}
 
@@ -88,7 +87,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
             max="1"
             step="0.01"
             value={volume}
-            className="accent-sky-500 "
+            className="accent-sky-500/80 "
             onChange={(e) => {
               const newVolume = parseFloat(e.target.value);
               setLocalVolume(newVolume);
@@ -119,7 +118,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
             max="1"
             step="0.01"
             value={volume}
-            className="accent-sky-500 "
+            className="accent-sky-500/80 "
             onChange={(e) => {
               const newVolume = parseFloat(e.target.value);
               setLocalVolume(newVolume);
@@ -150,7 +149,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
             max="1"
             step="0.01"
             value={volume}
-            className="accent-sky-500 "
+            className="accent-sky-500/80 "
             onChange={(e) => {
               const newVolume = parseFloat(e.target.value);
               setLocalVolume(newVolume);
@@ -181,7 +180,7 @@ const ButtonAudio: React.FC<AudioPlayerProps> = ({
             max="1"
             step="0.01"
             value={volume}
-            className="accent-sky-500 "
+            className="accent-sky-500/80 "
             onChange={(e) => {
               const newVolume = parseFloat(e.target.value);
               setLocalVolume(newVolume);

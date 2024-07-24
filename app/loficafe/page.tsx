@@ -3,11 +3,12 @@ import ButtonAudio from "@/components/acction-elements/buttom-audio";
 import LoadingVideo from "@/components/acction-elements/loading-video";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { FaCloud, FaCloudRain, FaMoon } from "react-icons/fa";
-import { FaSun } from "react-icons/fa6";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { ImEnter } from "react-icons/im";
+import { ImExit } from "react-icons/im";
 
-export default function Home() {
-  const [video, setVideo] = useState("/videos/main-bg-night.mp4");
+export default function CafeChill() {
+  const [video, setVideo] = useState("/videos/coffe-chill-day.mp4");
   const [choice, setChoice] = useState<string>("10");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,16 +29,16 @@ export default function Home() {
     const handleChangeVideo = () => {
       switch (choice) {
         case "10":
-          setVideo("/videos/main-bg-day.mp4");
+          setVideo("/videos/coffe-chill-night.mp4");
           break;
         case "11":
-          setVideo("/videos/main-bg-day-rain.mp4");
+          setVideo("/videos/coffe-chill-day.mp4");
           break;
         case "00":
-          setVideo("/videos/main-bg-night.mp4");
+          setVideo("/videos/lofi-coffee-night.mp4");
           break;
         case "01":
-          setVideo("/videos/main-bg-night-rain.mp4");
+          setVideo("/videos/lofi-coffee-day.mp4");
           break;
       }
     };
@@ -59,7 +60,7 @@ export default function Home() {
       ></video>
       <div
         className="flex items-center absolute left-4 bottom-2 z-20 
-       gap-4 bg-bgelement px-4 py-2 rounded-lg text-white text-lg"
+       gap-4 bg-bgelement px-4 py-2 rounded-xl text-white text-lg"
       >
         <button
           className={cn(
@@ -70,7 +71,7 @@ export default function Home() {
             handleChangeChoice(0, "1");
           }}
         >
-          <FaSun className="text-white" />
+          <ImEnter className="text-white" />
         </button>
         <button
           className={cn(
@@ -81,38 +82,66 @@ export default function Home() {
             handleChangeChoice(0, "0");
           }}
         >
-          <FaMoon className="text-white" />
+          <ImExit className="text-white" />
         </button>
         <button
           className={cn(
             "cursor-pointer size-8 flex items-center justify-center rounded-xl transition-all duration-300",
             choice[1] === "1" ? "bg-sky-500/60" : "bg-transparent"
           )}
-          onClick={() => handleChangeChoice(1, "1")}
+          onClick={() => {
+            handleChangeChoice(1, "1");
+          }}
         >
-          <FaCloudRain className="text-white" />
+          <FaSun className="text-white" />
         </button>
         <button
           className={cn(
             "cursor-pointer size-8 flex items-center justify-center rounded-xl transition-all duration-300",
             choice[1] === "0" ? "bg-sky-500/60" : "bg-transparent"
           )}
-          onClick={() => handleChangeChoice(1, "0")}
+          onClick={() => {
+            handleChangeChoice(1, "0");
+          }}
         >
-          <FaCloud className="text-white" />
+          <FaMoon className="text-white" />
         </button>
       </div>
-      <div className="absolute right-1/3 top-1/3 z-20">
+      {choice[0] === "1" ? (
+        <>
+          <div className="absolute left-[10%] top-[40%] z-20">
+            <ButtonAudio
+              index={14}
+              src="/sounds/forestday.mp3"
+              name={"Tiếng Rừng"}
+            />
+          </div>
+          <div className="absolute left-[65%] top-[50%] z-20">
+            <ButtonAudio
+              index={15}
+              src="/sounds/talking.mp3"
+              name={"Trò chuyện"}
+              place="bottom"
+            />
+          </div>
+        </>
+      ) :  <>
+      <div className="absolute left-[80%] top-[50%] z-20">
         <ButtonAudio
-          index={0}
-          src="/sounds/city-rain.mp3"
-          name={"Tiếng mưa"}
-          place="right"
+          index={20}
+          src="/sounds/typingphone.mp3"
+          name={"Điện thoại"}
         />
       </div>
-      <div className="absolute right-[60%] top-2/3 z-20">
-        <ButtonAudio index={1} src="/sounds/keyboard.mp3" name={"bàn phím"} />
+      <div className="absolute left-[10%] top-[40%] z-20">
+        <ButtonAudio
+          index={21}
+          src="/sounds/talking.mp3"
+          name={"Trò chuyện"}
+          place="bottom"
+        />
       </div>
+    </>}
     </main>
   );
 }

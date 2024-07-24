@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { FaCloud, FaCloudRain, FaMoon } from "react-icons/fa";
 import { FaSun } from "react-icons/fa6";
 
-export default function Home() {
-  const [video, setVideo] = useState("/videos/main-bg-night.mp4");
+export default function Kyoto() {
+  const [video, setVideo] = useState("/videos/kyotostreet-day.mp4");
   const [choice, setChoice] = useState<string>("10");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,16 +28,10 @@ export default function Home() {
     const handleChangeVideo = () => {
       switch (choice) {
         case "10":
-          setVideo("/videos/main-bg-day.mp4");
-          break;
-        case "11":
-          setVideo("/videos/main-bg-day-rain.mp4");
+          setVideo("/videos/kyotostreet-day.mp4");
           break;
         case "00":
-          setVideo("/videos/main-bg-night.mp4");
-          break;
-        case "01":
-          setVideo("/videos/main-bg-night-rain.mp4");
+          setVideo("/videos/kyotostreet-night.mp4");
           break;
       }
     };
@@ -59,7 +53,7 @@ export default function Home() {
       ></video>
       <div
         className="flex items-center absolute left-4 bottom-2 z-20 
-       gap-4 bg-bgelement px-4 py-2 rounded-lg text-white text-lg"
+       gap-4 bg-bgelement px-4 py-2 rounded-xl text-white text-lg"
       >
         <button
           className={cn(
@@ -83,36 +77,35 @@ export default function Home() {
         >
           <FaMoon className="text-white" />
         </button>
-        <button
-          className={cn(
-            "cursor-pointer size-8 flex items-center justify-center rounded-xl transition-all duration-300",
-            choice[1] === "1" ? "bg-sky-500/60" : "bg-transparent"
-          )}
-          onClick={() => handleChangeChoice(1, "1")}
-        >
-          <FaCloudRain className="text-white" />
-        </button>
-        <button
-          className={cn(
-            "cursor-pointer size-8 flex items-center justify-center rounded-xl transition-all duration-300",
-            choice[1] === "0" ? "bg-sky-500/60" : "bg-transparent"
-          )}
-          onClick={() => handleChangeChoice(1, "0")}
-        >
-          <FaCloud className="text-white" />
-        </button>
       </div>
-      <div className="absolute right-1/3 top-1/3 z-20">
-        <ButtonAudio
-          index={0}
-          src="/sounds/city-rain.mp3"
-          name={"Tiếng mưa"}
-          place="right"
-        />
-      </div>
-      <div className="absolute right-[60%] top-2/3 z-20">
-        <ButtonAudio index={1} src="/sounds/keyboard.mp3" name={"bàn phím"} />
-      </div>
+      {choice[0] === "0" && (
+        <>
+          <div className="absolute left-[30%] top-[20%] z-20">
+            <ButtonAudio
+              index={3}
+              src="/sounds/night.mp3"
+              name={"Tiếng trời đêm"}
+              place="bottom"
+            />
+          </div>
+          <div className="absolute right-[16%] top-[50%] z-20">
+            <ButtonAudio
+              index={4}
+              src="/sounds/talking.mp3"
+              name={"tiếng trò chuyện"}
+            />
+          </div>
+        </>
+      )}
+      {choice[0] === "1" && (
+        <div className="absolute left-[30%] top-[20%] z-20">
+          <ButtonAudio
+            index={5}
+            src="/sounds/forestday.mp3"
+            name={"tiếng rừng"}
+          />
+        </div>
+      )}
     </main>
   );
 }

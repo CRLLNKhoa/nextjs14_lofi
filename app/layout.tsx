@@ -11,6 +11,8 @@ import Tasks from "@/components/acction-elements/tasks";
 import ManegeAudio from "@/components/acction-elements/manege-audio";
 import { AudioProvider } from "@/contexts/audio-context";
 import ReactH5AudioPlayer from "@/components/acction-elements/react-h5-audio-player";
+import UiAction from "@/components/acction-elements/ui-action";
+import { FullScreen } from "react-full-screen";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -41,6 +43,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
+
       <body
         className={
           " m-plus-rounded-1c-regular flex min-h-screen flex-col items-center justify-between bg-white relative overflow-hidden"
@@ -56,6 +59,7 @@ export default function RootLayout({
             <Promodo />
             <Tasks />
             <ReactH5AudioPlayer />
+            <UiAction />
             <Toaster position="bottom-right" reverseOrder={false} />
           </>
         </AudioProvider>
