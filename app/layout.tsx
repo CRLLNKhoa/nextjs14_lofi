@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   publisher: "Carolo Lương Khoa",
   openGraph: {
     title: "Lofi Space",
-    description: "Website coded by Carolo Lương Khoa",
+    description: "Tại Lofi Space, chúng tôi mang đến cho bạn một trải nghiệm thư giãn độc đáo với âm nhạc lo-fi dễ chịu, giúp bạn tập trung, thư giãn và tạo ra không gian làm việc lý tưởng. Chúng tôi không chỉ cung cấp những bản nhạc lo-fi chất lượng cao mà còn trang bị một loạt các công cụ hỗ trợ hữu ích để nâng cao trải nghiệm của bạn.",
     url: "https://space-lofi.vercel.app/",
     siteName: "Lofi Space",
     images: [
@@ -45,6 +45,10 @@ export const metadata: Metadata = {
     ],
     locale: "vi",
     type: "website",
+    
+  },
+  other: {
+    ["fb:app_id"]: "994066882262917",
   },
 };
 
