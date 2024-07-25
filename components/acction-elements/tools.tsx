@@ -11,6 +11,9 @@ import Promodo from "./promodo";
 import { useTimeStore } from "@/stores/time-store";
 import { useTaskStore } from "@/stores/task-store";
 import { RiTaskFill } from "react-icons/ri";
+import { SiReaddotcv } from "react-icons/si";
+import { usePaperyStore } from "@/stores/papery";
+import { BsFileBinaryFill } from "react-icons/bs";
 
 function Tools({
   setCurrentMenu,
@@ -20,11 +23,11 @@ function Tools({
   setCurrentMenu: Function;
 }) {
   const [currentAction, setCurrentAction] = useState<
-    "none" | "ytb" | "promodo" | "task" | "scense"
+    "none" | "ytb" | "promodo" | "task" | "papery"
   >("none");
-  const hiddenTime =  useTimeStore((state:any) => state.play)
-  const hiddenTask =  useTaskStore((state:any) => state.play)
-
+  const hiddenTime = useTimeStore((state: any) => state.play);
+  const hiddenTask = useTaskStore((state: any) => state.play);
+  const hiddenPapery = usePaperyStore((state: any) => state.play);
 
   return (
     <>
@@ -33,12 +36,11 @@ function Tools({
           "flex flex-col items-center py-4 gap-4 w-[36px] transition-all duration-500 absolute top-1/2 -translate-y-1/2  bg-bgelement rounded-lg",
           currentMenu === "tool"
             ? "opacity-100 -left-12"
-            : "opacity-0 -left-8 -z-10"
+            : "opacity-0 -left-8 -z-10 scale-0"
         )}
       >
         <FaYoutube
           onClick={() => {
-    
             setCurrentAction("ytb");
           }}
           data-tooltip-offset={20}
@@ -46,23 +48,34 @@ function Tools({
           className="text-lg select-none text-gray-300 hover:text-orange-300 duration-300 cursor-pointer"
         />
         <MdTimer
-        onClick={() => {
-          hiddenTime();
-          setCurrentAction("promodo");
-        }}
+          onClick={() => {
+            hiddenTime();
+            setCurrentAction("promodo");
+          }}
           data-tooltip-offset={20}
           id="tooltip-6"
           className="text-lg select-none text-gray-300 hover:text-orange-300 duration-300 cursor-pointer"
         />
         <RiTaskFill
-        onClick={() => {
-          hiddenTask();
-          setCurrentAction("task");
-        }}
+          onClick={() => {
+            hiddenTask();
+            setCurrentAction("task");
+          }}
           data-tooltip-offset={20}
           id="tooltip-9"
           className="text-lg select-none text-gray-300 hover:text-orange-300 duration-300 cursor-pointer"
         />
+
+        <BsFileBinaryFill
+          onClick={() => {
+            hiddenPapery();
+            setCurrentAction("papery");
+          }}
+          data-tooltip-offset={20}
+          id="tooltip-99"
+          className="text-lg select-none text-gray-300 hover:text-orange-300 duration-300 cursor-pointer"
+        />
+
         <FaUserAlt
           data-tooltip-offset={20}
           id="tooltip-7"
@@ -73,9 +86,15 @@ function Tools({
           id="tooltip-8"
           className="text-lg text-gray-300 hover:text-orange-300 duration-300 cursor-pointer"
         />
-        <Youtube currentAction={currentAction} setCurrentMenu={setCurrentMenu} />
+        <Youtube
+          currentAction={currentAction}
+          setCurrentMenu={setCurrentMenu}
+        />
         <div
-          onClick={() => {setCurrentMenu("none"); setCurrentAction("none")}}
+          onClick={() => {
+            setCurrentMenu("none");
+            setCurrentAction("none");
+          }}
           className="absolute -bottom-10 rounded-lg bg-bgelement w-[36px] flex items-center 
         justify-center py-2"
         >
@@ -99,6 +118,9 @@ function Tools({
           </Tooltip>
           <Tooltip anchorSelect="#tooltip-9" place="left">
             Công việc
+          </Tooltip>
+          <Tooltip anchorSelect="#tooltip-99" place="left">
+            Nhật cảm xúc
           </Tooltip>
         </>
       )}

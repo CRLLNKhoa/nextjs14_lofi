@@ -102,6 +102,10 @@
   width: 0px;
 }
 
+.note-list::-webkit-scrollbar {
+  width: 0px;
+}
+
 
 .rhap_container {
   background-color: rgb(0 0 0 / 0.8)!important;

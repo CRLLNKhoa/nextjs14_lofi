@@ -102,14 +102,16 @@ export default function Home() {
           <FaCloud className="text-white" />
         </button>
       </div>
-      <div className="absolute right-1/3 top-1/3 z-20">
-        <ButtonAudio
-          index={0}
-          src="/sounds/city-rain.mp3"
-          name={"Tiếng mưa"}
-          place="right"
-        />
-      </div>
+      {choice[1] === "1" && (
+        <div className="absolute right-1/3 top-1/3 z-20">
+          <ButtonAudio
+            index={0}
+            src="/sounds/city-rain.mp3"
+            name={"Tiếng mưa"}
+            place="right"
+          />
+        </div>
+      )}
       <div className="absolute right-[60%] top-2/3 z-20">
         <ButtonAudio index={1} src="/sounds/keyboard.mp3" name={"bàn phím"} />
       </div>

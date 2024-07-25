@@ -7,7 +7,7 @@ export type UIStoreType = {
 };
 
 export const useUIStore = create((set) => ({
-  isHidden: true,
+  isHidden: false,
   show: () => set({ isHidden: true }),
   hidden: () => set({ isHidden: false }),
 }));
