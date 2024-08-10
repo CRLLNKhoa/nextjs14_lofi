@@ -94,6 +94,10 @@
 
 
 
+.no-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
 .list-scense::-webkit-scrollbar {
   width: 0px;
 }
